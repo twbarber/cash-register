@@ -17,7 +17,7 @@
 *.ipr
 
 ### NetBeans ###
-nbproject/private/
+nbproject/private/git config core.autocrlf
 build/
 nbbuild/
 dist/
