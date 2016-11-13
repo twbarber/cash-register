@@ -30,7 +30,6 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-couchbase')
 	compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
