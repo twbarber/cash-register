@@ -11,7 +11,7 @@ class CashRegisterController {
     lateinit var service : CashRegisterService
 
     @RequestMapping(value = "/balance", method = arrayOf(RequestMethod.GET))
-    fun getBalance() : String {
+    fun balance() : String {
         return service.getBalance()
     }
 
@@ -26,7 +26,7 @@ class CashRegisterController {
     }
 
     @RequestMapping(value = "/change", method = arrayOf(RequestMethod.POST))
-    fun makechange(@RequestBody amount : Int) : String {
+    fun change(@RequestBody amount : Int) : String {
         return service.makeChange(amount)
     }
 
