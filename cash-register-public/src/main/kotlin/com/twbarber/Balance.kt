@@ -1,21 +1,39 @@
 package com.twbarber
 
-data class Balance(val twenties: Int = 0, val tens: Int = 0, val fives: Int = 0, val ones: Int = 0) {
+data class Balance(val twenties: Int, val tens: Int, val fives: Int, val twos: Int, val ones: Int) {
 
     fun total() : Int {
-        return 20 * twenties + 10 * tens + 5 * fives + ones
+        return 20 * twenties + 10 * tens + 5 * fives + 2 * twos + ones
     }
 
-    fun add(balance: Balance) : Balance {
-        require(balance.twenties >= 0 && balance.tens >= 0
-                && balance.fives >= 0 && balance.ones >= 0) { "Can only add non-negative amounts of bills." }
-        return Balance(this.twenties + balance.twenties, this.tens + balance.tens,
-                this.fives + balance.fives, this.ones + balance.ones)
+    fun take(transaction: Balance) : Balance {
+        require(this.twenties - transaction.twenties >= 0) { "Not enough twenties to complete transaction." }
+        require(this.tens - transaction.tens >= 0) { "Not enough tens to complete transaction." }
+        require(this.fives - transaction.fives >= 0) { "Not enough fives to complete transaction." }
+        require(this.twos - transaction.twos >= 0) { "Not enough twos to complete transaction." }
+        require(this.ones - transaction.ones >= 0) { "Not enough ones to complete transaction." }
+        return Balance(this.twenties - transaction.twenties, this.tens - transaction.tens,
+                this.fives - transaction.fives, this.twos - transaction.twos, this.ones - transaction.ones)
     }
 
-    override fun toString() : String {
+    fun put(transaction: Balance) : Balance {
+        require(transaction.twenties >= 0) { "Not enough twenties to complete transaction." }
+        require(transaction.tens >= 0) { "Not enough tens to complete transaction." }
+        require(transaction.fives >= 0) { "Not enough fives to complete transaction." }
+        require(transaction.twos >= 0) { "Not enough twos to complete transaction." }
+        require(transaction.ones >= 0) { "Not enough ones to complete transaction." }
+        return Balance(this.twenties + transaction.twenties, this.tens + transaction.tens,
+                this.fives + transaction.fives, this.twos + transaction.twos, this.ones + transaction.ones)
+    }
+
+    fun show() : String {
         val total = total()
-        return "\$$total $twenties $tens $fives $ones"
+        val bills = bills()
+        return "\$$total $bills"
+    }
+
+    fun bills() : String {
+        return "$twenties $tens $fives $twos $ones"
     }
 
 }
