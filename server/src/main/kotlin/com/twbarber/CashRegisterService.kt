@@ -13,11 +13,11 @@ class CashRegisterService {
         return register.show()
     }
 
-    fun addMoney(balance: Balance) : String {
+    fun deposit(balance: Balance) : String {
         return register.put(balance).show()
     }
 
-    fun removeMoney(balance: Balance) : String {
+    fun withdraw(balance: Balance) : String {
         return register.take(balance).show()
     }
 
