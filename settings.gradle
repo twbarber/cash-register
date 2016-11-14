@@ -1,4 +1,2 @@
-include 'cash-register-common'
 include 'cash-register-server'
 include 'cash-register-public'
-
