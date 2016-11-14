@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-open class CashRegister(balance: Balance) {
+open class CashRegister() {
 
     @Autowired
-    private var balance = Balance(0, 0, 0, 0, 0)
+    private lateinit var balance : Balance
 
-    fun show() : Balance {
-        return balance
+    fun show() : String {
+        return balance.show()
     }
 
     fun put(transaction: Balance): Balance {
