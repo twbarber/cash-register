@@ -8,6 +8,7 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.springframework:spring-core:4.3.3.RELEASE"
     }
 }
 
@@ -19,5 +20,6 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.springframework:spring-core:4.3.3.RELEASE"
     testCompile "junit:junit:4.12"
 }

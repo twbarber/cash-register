@@ -18,7 +18,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 jar {
-	baseName = 'cash-register'
+	baseName = 'cash-register-server'
 	version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
@@ -30,6 +30,7 @@ repositories {
 
 
 dependencies {
+	compile project(':cash-register-public')
 	compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
