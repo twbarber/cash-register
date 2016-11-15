@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 open class CashRegister() {
 
     @Autowired
-    private lateinit var balance : Balance
+    private var balance = Balance(0, 0, 0, 0, 0)
 
     fun show() : String {
         return balance.show()

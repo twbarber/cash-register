@@ -1,6 +1,5 @@
 package com.twbarber
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.util.*
 
 class CashRegisterCliRunner {
@@ -14,16 +13,21 @@ class CashRegisterCliRunner {
     private val register = CashRegister()
     private val input = Scanner(System.`in`)
 
-    fun main() {
-        val context = AnnotationConfigApplicationContext(CashRegisterConfig::class.java)
+    companion object {
+        @JvmStatic fun main(args: Array<String>) {
+            CashRegisterCliRunner().run()
+        }
+    }
+
+    fun run() {
         System.out.println(READY)
         while (true) {
             val input = input.next().toLowerCase()
             val out = ""
             if (input.matches(Regex(SHOW_REGEX))) print(register.show())
-            if (input.matches(Regex(TAKE_REGEX))) print(register.take(parseTransaction(input)))
-            if (input.matches(Regex(PUT_REGEX))) print(register.put(parseTransaction(input)))
-            if (input.matches(Regex(CHANGE_REGEX))) print(register.change(parseChange(input)))
+            if (input.matches(Regex(TAKE_REGEX))) print(register.take(parseTransaction(input)).show())
+            if (input.matches(Regex(PUT_REGEX))) print(register.put(parseTransaction(input)).show())
+            if (input.matches(Regex(CHANGE_REGEX))) print(register.change(parseChange(input)).show())
             print(out)
         }
     }
