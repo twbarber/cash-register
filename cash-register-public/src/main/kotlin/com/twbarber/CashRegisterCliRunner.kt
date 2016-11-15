@@ -2,7 +2,7 @@ package com.twbarber
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
-class CashRegisterRunner {
+class CashRegisterCliRunner {
 
     fun main() {
         val context = AnnotationConfigApplicationContext(CashRegisterConfig::class.java)
