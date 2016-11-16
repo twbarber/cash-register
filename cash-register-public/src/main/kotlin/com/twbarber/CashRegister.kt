@@ -1,12 +1,10 @@
 package com.twbarber
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
 open class CashRegister() {
 
-    @Autowired
     private var balance = Balance(0, 0, 0, 0, 0)
 
     fun show() : String {
