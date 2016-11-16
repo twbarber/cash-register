@@ -8,8 +8,14 @@ class CashRegisterCliRunnerTest {
     val cli = CashRegisterCliRunner()
 
     @Test
-    fun parseTransaction() {
+    fun parsePutTransaction() {
         val input = "put 1 1 1 1 1"
+        assertEquals(Balance(1, 1, 1, 1, 1), cli.parseTransaction(input))
+    }
+
+    @Test
+    fun parseTakeTransaction() {
+        val input = "take 1 1 1 1 1"
         assertEquals(Balance(1, 1, 1, 1, 1), cli.parseTransaction(input))
     }
 

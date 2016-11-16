@@ -22,13 +22,16 @@ class CashRegisterCliRunner {
     fun run() {
         System.out.println(READY)
         while (true) {
-            val input = input.next().toLowerCase()
-            val out = ""
-            if (input.matches(Regex(SHOW_REGEX))) print(register.show())
-            if (input.matches(Regex(TAKE_REGEX))) print(register.take(parseTransaction(input)).show())
-            if (input.matches(Regex(PUT_REGEX))) print(register.put(parseTransaction(input)).show())
-            if (input.matches(Regex(CHANGE_REGEX))) print(register.change(parseChange(input)).show())
-            print(out)
+            try {
+                val input = input.nextLine().toLowerCase()
+                if (input.matches(Regex(SHOW_REGEX))) print(register.show())
+                else if (input.matches(Regex(TAKE_REGEX))) print(register.take(parseTransaction(input)).show())
+                else if (input.matches(Regex(PUT_REGEX))) print(register.put(parseTransaction(input)).show())
+                else if (input.matches(Regex(CHANGE_REGEX))) print(register.change(parseChange(input)).show())
+                else (print("Unsupported Operation."))
+            } catch (e : Exception) {
+                print(e.message + "\n")
+            }
         }
     }
 
