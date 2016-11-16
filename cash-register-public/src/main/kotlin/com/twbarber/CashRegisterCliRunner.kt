@@ -4,11 +4,11 @@ import java.util.*
 
 class CashRegisterCliRunner {
 
-    private val READY = "ready"
-    private val SHOW_REGEX = "show"
-    private val TAKE_REGEX = "take (\\d+ ){4}\\d+"
-    private val PUT_REGEX = "put (\\d+ ){4}\\d+"
-    private val CHANGE_REGEX = "change \\d+"
+    val READY = "ready"
+    val SHOW_REGEX = "show"
+    val TAKE_REGEX = "take (\\d+ ){4}\\d+"
+    val PUT_REGEX = "put (\\d+ ){4}\\d+"
+    val CHANGE_REGEX = "change \\d+"
 
     private val register = CashRegister()
     private val input = Scanner(System.`in`)
