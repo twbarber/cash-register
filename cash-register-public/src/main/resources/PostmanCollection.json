@@ -1,0 +1,91 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Cash Register",
+		"_postman_id": "271e9bae-ce95-1513-114e-2cc2804f956e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Balance",
+			"request": {
+				"url": "http://localhost:8080/api/v1/register/balance",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"twenties\": 1,\n  \"tens\": 0,\n  \"fives\": 0,\n  \"twos\": 0,\n  \"ones\": 0\n}"
+				},
+				"description": "Get's Cash Register's current Balance\n\nEquivilant to CLI:\n\n`show`"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Deposit",
+			"request": {
+				"url": "http://localhost:8080/api/v1/register/deposit",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"twenties\": 1,\n  \"tens\": 0,\n  \"fives\": 0,\n  \"twos\": 0,\n  \"ones\": 0\n}"
+				},
+				"description": "Posts a Deposit Request to the Cash Register and Returns the new Balance\n\nEquivilant to CLI:\n\n`put 1 1 1 1 1`"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Withdrawl",
+			"request": {
+				"url": "http://localhost:8080/api/v1/register/change",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 2\n}"
+				},
+				"description": "Posts a Withdrawl Request to the Cash Register and Returns the new Balance\n\nEquivilant to CLI:\n\n`take 1 1 1 1 1`"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Change",
+			"request": {
+				"url": "http://localhost:8080/api/v1/register/change",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 2\n}"
+				},
+				"description": "Posts a Change Request to the Cash Register and Returns the composition of your change as a Balance\n\nEquivilant to CLI:\n\n`change 12`"
+			},
+			"response": []
+		}
+	]
+}
