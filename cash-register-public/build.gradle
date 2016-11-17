@@ -24,10 +24,6 @@ repositories {
     mavenCentral()
 }
 
-kapt {
-    generateStubs = true
-}
-
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
