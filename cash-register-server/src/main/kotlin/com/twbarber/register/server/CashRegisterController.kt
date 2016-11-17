@@ -4,7 +4,6 @@ import com.twbarber.register.public.CashRegister
 import com.twbarber.register.public.data.Balance
 import com.twbarber.register.public.data.Change
 import com.twbarber.register.public.web.BalanceDto
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("api/v1/register")
 class CashRegisterController {
 
-    @Autowired
-    private lateinit var register: CashRegister
+    private val register = CashRegister()
 
     @RequestMapping(value = "/balance", method = arrayOf(RequestMethod.GET), produces = arrayOf(APPLICATION_JSON_VALUE))
     fun balance() : BalanceDto {

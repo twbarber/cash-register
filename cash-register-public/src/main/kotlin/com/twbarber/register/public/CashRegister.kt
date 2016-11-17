@@ -1,9 +1,7 @@
 package com.twbarber.register.public
 
 import com.twbarber.register.public.data.Balance
-import org.springframework.stereotype.Component
 
-@Component
 open class CashRegister() {
 
     private var balance = Balance(0, 0, 0, 0, 0)

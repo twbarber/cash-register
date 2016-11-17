@@ -10,7 +10,6 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "org.springframework:spring-core:$springVersion"
     }
 }
 
@@ -25,10 +24,12 @@ repositories {
     mavenCentral()
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    compile "org.springframework:spring-core:$springVersion"
-    kapt "org.springframework:spring-core:$springVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
     testCompile "junit:junit:4.12"
 }
