@@ -31,5 +31,6 @@ dependencies {
 	compile project(':cash-register-public')
 	compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
 	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

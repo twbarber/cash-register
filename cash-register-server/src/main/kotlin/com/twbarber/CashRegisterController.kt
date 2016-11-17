@@ -1,6 +1,7 @@
 package com.twbarber
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -13,25 +14,28 @@ class CashRegisterController {
     @Autowired
     private lateinit var register: CashRegister
 
-    @RequestMapping(value = "/balance", method = arrayOf(RequestMethod.GET))
-    fun balance() : String {
-        return register.show()
+    @RequestMapping(value = "/balance", method = arrayOf(RequestMethod.GET), produces = arrayOf(APPLICATION_JSON_VALUE))
+    fun balance() : BalanceDto {
+        return register.balance().internalToExternal()
     }
 
-    @RequestMapping(value = "/withdraw", method = arrayOf(RequestMethod.POST))
-    fun withdraw(@RequestBody bills : Balance) : String {
-        return register.take(bills).show()
+    @RequestMapping(value = "/withdraw", method = arrayOf(RequestMethod.POST), produces = arrayOf(APPLICATION_JSON_VALUE))
+    fun withdraw(@RequestBody bills : Balance) : BalanceDto {
+        return register.take(bills).internalToExternal()
     }
 
-    @RequestMapping(value = "/deposit", method = arrayOf(RequestMethod.POST))
-    fun deposit(@RequestBody bills : Balance) : String {
-        return register.put(bills).show()
+    @RequestMapping(value = "/deposit", method = arrayOf(RequestMethod.POST), produces = arrayOf(APPLICATION_JSON_VALUE))
+    fun deposit(@RequestBody bills : Balance) : BalanceDto {
+        return register.put(bills).internalToExternal()
     }
 
-    @RequestMapping(value = "/change", method = arrayOf(RequestMethod.POST))
-    fun change(@RequestBody amount : Int) : String {
-        return register.change(amount).show()
+    @RequestMapping(value = "/change", method = arrayOf(RequestMethod.POST), produces = arrayOf(APPLICATION_JSON_VALUE))
+    fun change(@RequestBody change: Change) : BalanceDto {
+        return register.change(change.amount).internalToExternal()
     }
+
+    private fun Balance.internalToExternal() : BalanceDto =
+            BalanceDto("$" + this.total(), this.twenties, this.tens, this.fives, this.twos, this.ones)
 
 }
 

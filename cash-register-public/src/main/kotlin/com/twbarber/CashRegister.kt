@@ -7,9 +7,9 @@ open class CashRegister() {
 
     private var balance = Balance(0, 0, 0, 0, 0)
 
-    fun show() : String {
-        return balance.show()
-    }
+    fun balance() : Balance = balance
+
+    fun show() : String = balance.show()
 
     fun put(transaction: Balance): Balance {
         balance = balance.put(transaction)
@@ -27,7 +27,7 @@ open class CashRegister() {
         return change
     }
 
-    private fun makeChange(amount: Int) : Balance{
+    private fun makeChange(amount: Int) : Balance {
         return Balance(0, 0, 0, 0, 0)
     }
 }

@@ -29,5 +29,6 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "org.springframework:spring-core:$springVersion"
     kapt "org.springframework:spring-core:$springVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
     testCompile "junit:junit:4.12"
 }
