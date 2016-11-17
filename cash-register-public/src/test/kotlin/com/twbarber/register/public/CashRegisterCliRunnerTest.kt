@@ -1,5 +1,7 @@
-package com.twbarber
+package com.twbarber.register.public
 
+import com.twbarber.register.public.cli.CashRegisterCliRunner
+import com.twbarber.register.public.data.Balance
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertTrue
 import org.junit.Assert.assertEquals

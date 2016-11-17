@@ -1,5 +1,9 @@
-package com.twbarber
+package com.twbarber.register.server
 
+import com.twbarber.register.public.CashRegister
+import com.twbarber.register.public.data.Balance
+import com.twbarber.register.public.data.Change
+import com.twbarber.register.public.web.BalanceDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.web.bind.annotation.RequestBody

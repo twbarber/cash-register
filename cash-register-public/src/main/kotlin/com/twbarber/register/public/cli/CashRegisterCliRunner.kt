@@ -1,5 +1,7 @@
-package com.twbarber
+package com.twbarber.register.public.cli
 
+import com.twbarber.register.public.CashRegister
+import com.twbarber.register.public.data.Balance
 import java.util.*
 
 class CashRegisterCliRunner {

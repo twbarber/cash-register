@@ -1,5 +1,6 @@
-package com.twbarber
+package com.twbarber.register.public
 
+import com.twbarber.register.public.data.Balance
 import org.springframework.stereotype.Component
 
 @Component
