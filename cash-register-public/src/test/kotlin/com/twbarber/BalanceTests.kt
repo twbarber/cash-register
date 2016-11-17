@@ -1,10 +1,8 @@
 package com.twbarber
 
-
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import org.junit.Test
-
 
 class BalanceTests {
 
@@ -45,5 +43,10 @@ class BalanceTests {
         bal.put(Balance(-1, 0, 1, 1, 1))
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun excessiveTakeThrowsIllegalArgument() {
+        val bal = Balance(1, 1, 1, 1, 1)
+        bal.take(Balance(2, 2, 2, 2, 2))
+    }
 
 }

@@ -1,25 +1,33 @@
-version 'unspecified'
-
 buildscript {
-    ext.kotlin_version = '1.0.5'
+    ext {
+        kotlinVersion = '1.0.5-2'
+        springVersion = '4.3.3.RELEASE'
+    }
 
     repositories {
         mavenCentral()
     }
+
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.springframework:spring-core:4.3.3.RELEASE"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.springframework:spring-core:$springVersion"
     }
 }
 
 apply plugin: 'kotlin'
+
+jar {
+    baseName = 'cash-register-public'
+    version = '0.0.1-SNAPSHOT'
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile "org.springframework:spring-core:4.3.3.RELEASE"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.springframework:spring-core:$springVersion"
+    kapt "org.springframework:spring-core:$springVersion"
     testCompile "junit:junit:4.12"
 }

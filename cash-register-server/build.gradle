@@ -1,15 +1,16 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.0.3'
+		kotlinVersion = '1.0.5-2'
 		springBootVersion = '1.4.2.RELEASE'
 	}
+
 	repositories {
 		mavenCentral()
 	}
+
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-
 	}
 }
 
@@ -21,13 +22,10 @@ jar {
 	baseName = 'cash-register-server'
 	version = '0.0.1-SNAPSHOT'
 }
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
 }
-
 
 dependencies {
 	compile project(':cash-register-public')
