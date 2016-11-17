@@ -1,16 +1,11 @@
 package com.twbarber
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-
 data class Balance(val twenties: Int, val tens: Int, val fives: Int, val twos: Int, val ones: Int) {
 
-    fun total() : Int {
-        return 20 * twenties + 10 * tens + 5 * fives + 2 * twos + ones
-    }
+    fun total() : Int = 20 * twenties + 10 * tens + 5 * fives + 2 * twos + ones
 
-    @JsonIgnore
+    fun bills() : String = "$twenties $tens $fives $twos $ones"
+
     fun take(transaction: Balance) : Balance {
         require(this.twenties - transaction.twenties >= 0) { "Not enough twenties to complete transaction." }
         require(this.tens - transaction.tens >= 0) { "Not enough tens to complete transaction." }
@@ -21,7 +16,6 @@ data class Balance(val twenties: Int, val tens: Int, val fives: Int, val twos: I
                 this.fives - transaction.fives, this.twos - transaction.twos, this.ones - transaction.ones)
     }
 
-    @JsonIgnore
     fun put(transaction: Balance) : Balance {
         require(transaction.twenties >= 0) { "Not enough twenties to complete transaction." }
         require(transaction.tens >= 0) { "Not enough tens to complete transaction." }
@@ -32,16 +26,10 @@ data class Balance(val twenties: Int, val tens: Int, val fives: Int, val twos: I
                 this.fives + transaction.fives, this.twos + transaction.twos, this.ones + transaction.ones)
     }
 
-    @JsonIgnore
     fun show() : String {
         val total = total()
         val bills = bills()
         return "\$$total $bills"
-    }
-
-    @JsonIgnore
-    fun bills() : String {
-        return "$twenties $tens $fives $twos $ones"
     }
 
 }
