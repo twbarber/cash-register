@@ -11,6 +11,7 @@ class CashRegisterCliRunner {
     val TAKE_REGEX = "take (\\d+ ){4}\\d+"
     val PUT_REGEX = "put (\\d+ ){4}\\d+"
     val CHANGE_REGEX = "change \\d+"
+    val QUIT_REGEX = "quit"
 
     private val register = CashRegister()
     private val input = Scanner(System.`in`)
@@ -30,6 +31,10 @@ class CashRegisterCliRunner {
                 else if (input.matches(Regex(TAKE_REGEX))) print(register.take(parseTransaction(input)).show())
                 else if (input.matches(Regex(PUT_REGEX))) print(register.put(parseTransaction(input)).show())
                 else if (input.matches(Regex(CHANGE_REGEX))) print(register.change(parseChange(input)).show())
+                else if (input.matches(Regex(QUIT_REGEX))) {
+                    print("Bye")
+                    System.exit(0)
+                }
                 else (print("Unsupported Operation."))
             } catch (e : Exception) {
                 print(e.message + "\n")

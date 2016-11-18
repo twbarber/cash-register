@@ -35,7 +35,7 @@ class CashRegisterCliRunnerTest {
         assertFalse(input.matches(Regex(cli.TAKE_REGEX)))
     }
 
-        @Test
+    @Test
     fun matchShowRegex() {
         val input = "show"
         assertTrue(input.matches(Regex(cli.SHOW_REGEX)))
@@ -44,6 +44,12 @@ class CashRegisterCliRunnerTest {
     @Test
     fun matchChangeRegex() {
         val input = "change 13"
+        assertTrue(input.matches(Regex(cli.CHANGE_REGEX)))
+    }
+
+    @Test
+    fun matchQuitRegex() {
+        val input = "quit"
         assertTrue(input.matches(Regex(cli.CHANGE_REGEX)))
     }
 
