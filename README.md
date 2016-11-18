@@ -35,5 +35,39 @@ Thoughts on the problem, and some things I considered but decided were out of sc
 - No billsForChange were given when asking for change, so the money that's taken is never replenished.
 - No exchange rate was taken into account, which makes sense for making change.
 
+### Example Usage
+
+```
+// show current state in total and each denomination:
+> show
+$68 1 2 3 4 5
+
+// put bills in each denomination
+// show current state
+> put 1 2 3 0 5
+$128 2 4 6 4 10
+
+// take bills in each denomination
+// show current state
+> take 1 4 3 0 10
+$43 1 0 3 4 0
+
+// given amount
+// show change in each denomination
+// and remove money from cash register
+> change 10
+0 0 1 3 0
+> show
+$32 1 0 2 1 0
+
+// show error if there is insufficient fund or no change can be made
+> change 14
+sorry
+
+// exit program
+> quit
+Bye
+```
+
 ### Builds
 [![Build Status](https://travis-ci.org/twbarber/cash-register.svg?branch=master)](https://travis-ci.org/twbarber/cash-register)
