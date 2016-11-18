@@ -1,8 +1,13 @@
 package com.twbarber.register.public.data
 
+import com.twbarber.register.public.data.MoneyValue.TWENTY
+import com.twbarber.register.public.data.MoneyValue.TEN
+import com.twbarber.register.public.data.MoneyValue.FIVE
+import com.twbarber.register.public.data.MoneyValue.TWO
+
 data class Balance(val twenties: Int, val tens: Int, val fives: Int, val twos: Int, val ones: Int) {
 
-    fun total() : Int = 20 * twenties + 10 * tens + 5 * fives + 2 * twos + ones
+    fun total() : Int = TWENTY.value * twenties + TEN.value * tens + FIVE.value * fives + TWO.value * twos + ones
 
     fun bills() : String = "$twenties $tens $fives $twos $ones"
 

@@ -30,7 +30,16 @@ class CashRegisterTest {
 
     @Test
     fun change() {
+        val register = CashRegister()
+        register.put(Balance(20, 20, 20, 20, 20))
+        assertEquals(Balance(20, 10, 0, 0, 0), register.change(500))
+    }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun notEnoughCashToMakeChange() {
+        val register = CashRegister()
+        register.put(Balance(0, 0, 0, 0, 1))
+        register.change(10)
     }
 
 }
