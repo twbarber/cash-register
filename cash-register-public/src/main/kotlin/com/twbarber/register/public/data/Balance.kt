@@ -22,7 +22,7 @@ data class Balance(val twenties: Int, val tens: Int, val fives: Int, val twos: I
     }
 
     fun put(transaction: Balance) : Balance {
-        require(transaction.twenties >= 0) { "Number of twetiw" }
+        require(transaction.twenties >= 0) { "Not enough twenties to complete transaction." }
         require(transaction.tens >= 0) { "Not enough tens to complete transaction." }
         require(transaction.fives >= 0) { "Not enough fives to complete transaction." }
         require(transaction.twos >= 0) { "Not enough twos to complete transaction." }
