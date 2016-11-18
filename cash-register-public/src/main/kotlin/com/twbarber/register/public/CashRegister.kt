@@ -36,6 +36,11 @@ open class CashRegister() {
         return change.bills()
     }
 
+    /**
+     * Makes changes with the least amount of bills given an input.
+     *
+     *
+     */
     private fun makeChange(amount: Int, bal: Balance) : Balance {
         require(amount <= bal.total()) { "Unable to make change for that amount." }
         var change = Balance(0, 0, 0, 0, 0)

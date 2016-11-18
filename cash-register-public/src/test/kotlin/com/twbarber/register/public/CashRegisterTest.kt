@@ -120,4 +120,20 @@ class CashRegisterTest {
         register.change(3)
     }
 
+    @Test
+    fun givenExampleTest() {
+        val register = CashRegister()
+        register.put(Balance(1, 2, 3, 4, 5))
+        assertEquals("$68 1 2 3 4 5", register.show())
+        assertEquals("$128 2 4 6 4 10", register.put(Balance(1, 2, 3, 0, 5)).show())
+        assertEquals("$43 1 0 3 4 0", register.take(Balance(1, 4, 3, 0, 10)).show())
+        assertEquals("0 0 1 3 0", register.change(11))
+        assertEquals("$32 1 0 2 1 0", register.show())
+        try {
+            register.change(14)
+        } catch (e: IllegalArgumentException) {
+            assertEquals("Unable to make change for that amount.", e.message);
+        }
+    }
+
 }
