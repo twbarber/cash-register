@@ -47,63 +47,63 @@ class CashRegisterTest {
     fun change() {
         val register = CashRegister()
         register.put(Balance(20, 20, 20, 20, 20))
-        assertEquals(Balance(20, 10, 0, 0, 0), register.change(500))
+        assertEquals(Balance(20, 10, 0, 0, 0).bills(), register.change(500))
     }
 
     @Test
     fun changeZero() {
         val register = CashRegister()
         register.put(Balance(200, 200, 200, 200, 200))
-        assertEquals(Balance(0, 0, 0, 0, 0), register.change(0))
+        assertEquals(Balance(0, 0, 0, 0, 0).bills(), register.change(0))
     }
 
     @Test
     fun changeLargeNumbers() {
         val register = CashRegister()
         register.put(Balance(200, 200, 200, 200, 200))
-        assertEquals(Balance(193, 0, 0, 1, 1), register.change(3863))
+        assertEquals(Balance(193, 0, 0, 1, 1).bills(), register.change(3863))
     }
 
     @Test
     fun changeLargerNumbers() {
         val register = CashRegister()
         register.put(Balance(2000, 2000, 2000, 2000, 2000))
-        assertEquals(Balance(1850, 1, 0, 1, 0), register.change(37012))
+        assertEquals(Balance(1850, 1, 0, 1, 0).bills(), register.change(37012))
     }
 
     @Test
     fun changeNoTwenties() {
         val register = CashRegister()
         register.put(Balance(0, 1, 1, 1, 1))
-        assertEquals(Balance(0, 1, 1, 1, 1), register.change(18))
+        assertEquals(Balance(0, 1, 1, 1, 1).bills(), register.change(18))
     }
 
     @Test
     fun changeNoTens() {
         val register = CashRegister()
         register.put(Balance(1, 0, 1, 1, 1))
-        assertEquals(Balance(1, 0, 1, 1, 1), register.change(28))
+        assertEquals(Balance(1, 0, 1, 1, 1).bills(), register.change(28))
     }
 
     @Test
     fun changeNoFives() {
         val register = CashRegister()
         register.put(Balance(1, 1, 0, 1, 1))
-        assertEquals(Balance(1, 1, 0, 1, 1), register.change(33))
+        assertEquals(Balance(1, 1, 0, 1, 1).bills(), register.change(33))
     }
 
     @Test
     fun changeNoTwos() {
         val register = CashRegister()
         register.put(Balance(1, 1, 1, 0, 1))
-        assertEquals(Balance(1, 1, 1, 0, 0), register.change(35))
+        assertEquals(Balance(1, 1, 1, 0, 0).bills(), register.change(35))
     }
 
     @Test
     fun changeNoOnes() {
         val register = CashRegister()
         register.put(Balance(1, 1, 1, 2, 0))
-        assertEquals(Balance(0, 1, 0, 2, 0), register.change(14))
+        assertEquals(Balance(0, 1, 0, 2, 0).bills(), register.change(14))
     }
 
     @Test(expected = IllegalArgumentException::class)

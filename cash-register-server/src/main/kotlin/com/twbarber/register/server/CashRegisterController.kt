@@ -4,6 +4,7 @@ import com.twbarber.register.public.CashRegister
 import com.twbarber.register.public.data.Balance
 import com.twbarber.register.public.data.Change
 import com.twbarber.register.public.web.BalanceDto
+import com.twbarber.register.public.web.ChangeDto
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -32,8 +33,8 @@ class CashRegisterController {
     }
 
     @RequestMapping(value = "/change", method = arrayOf(RequestMethod.POST), produces = arrayOf(APPLICATION_JSON_VALUE))
-    fun change(@RequestBody change: Change) : BalanceDto {
-        return register.change(change.amount).internalToExternal()
+    fun change(@RequestBody change: Change) : ChangeDto {
+        return ChangeDto(register.change(change.amount))
     }
 
     private fun Balance.internalToExternal() : BalanceDto =

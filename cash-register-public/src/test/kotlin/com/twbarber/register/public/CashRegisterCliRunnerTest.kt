@@ -50,7 +50,7 @@ class CashRegisterCliRunnerTest {
     @Test
     fun matchQuitRegex() {
         val input = "quit"
-        assertTrue(input.matches(Regex(cli.CHANGE_REGEX)))
+        assertTrue(input.matches(Regex(cli.QUIT_REGEX)))
     }
 
     @Test

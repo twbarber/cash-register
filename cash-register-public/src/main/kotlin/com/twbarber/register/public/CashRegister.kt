@@ -1,11 +1,7 @@
 package com.twbarber.register.public
 
 import com.twbarber.register.public.data.Balance
-
-import com.twbarber.register.public.data.MoneyValue.TWENTY
-import com.twbarber.register.public.data.MoneyValue.TEN
-import com.twbarber.register.public.data.MoneyValue.FIVE
-import com.twbarber.register.public.data.MoneyValue.TWO
+import com.twbarber.register.public.data.MoneyValue.*
 
 open class CashRegister() {
 
