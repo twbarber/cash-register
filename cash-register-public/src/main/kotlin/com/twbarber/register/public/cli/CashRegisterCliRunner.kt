@@ -30,7 +30,7 @@ class CashRegisterCliRunner {
                 if (input.matches(Regex(SHOW_REGEX))) print(register.show())
                 else if (input.matches(Regex(TAKE_REGEX))) print(register.take(parseTransaction(input)).show())
                 else if (input.matches(Regex(PUT_REGEX))) print(register.put(parseTransaction(input)).show())
-                else if (input.matches(Regex(CHANGE_REGEX))) print(register.change(parseChange(input)).show())
+                else if (input.matches(Regex(CHANGE_REGEX))) print(register.change(parseChange(input)))
                 else if (input.matches(Regex(QUIT_REGEX))) {
                     print("Bye")
                     System.exit(0)

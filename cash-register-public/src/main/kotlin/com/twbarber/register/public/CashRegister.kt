@@ -30,10 +30,14 @@ open class CashRegister() {
         return balance
     }
 
-    fun change(amount: Int): Balance {
+    fun change(amount: Int): String {
+        if (amount == 0) return Balance(0, 0, 0, 0, 0).bills()
         val change = makeChange(amount, balance)
+        if (change == Balance(0, 0, 0, 0, 0)) {
+            throw RuntimeException("Unable to make change for \$$amount")
+        }
         balance = balance.take(change)
-        return change
+        return change.bills()
     }
 
     private fun makeChange(amount: Int, bal: Balance) : Balance {
@@ -52,12 +56,12 @@ open class CashRegister() {
             count = floor(amount / FIVE.value, bal.fives)
             change = change.put(Balance(0, 0, count, 0, 0))
             change = change.put(makeChange(amount - change.total(), bal.take(change)))
-        } else if (amount >= TWO.value &&  bal.twos >  0) {
+        } else if (amount >= TWO.value &&  bal.twos > 0) {
             count = floor(amount / TWO.value, bal.twos)
             change = change.put(Balance(0, 0, 0, count, 0))
             change = change.put(makeChange(amount - change.total(), bal.take(change)))
         } else {
-            change.put(Balance(0, 0, 0, 0, amount))
+            change = change.put(Balance(0, 0, 0, 0, amount))
         }
         return change
     }
