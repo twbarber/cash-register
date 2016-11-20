@@ -39,6 +39,11 @@ class BalanceTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
+    fun negativeValForAnyBillThrowsError() {
+        val bal = Balance(-1, 1, 1, 1, 1)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
     fun addBalanceWithNegativesThrowsError() {
         val bal = Balance(1, 1, 1, 1, 1)
         bal.put(Balance(-1, 0, 1, 1, 1))
