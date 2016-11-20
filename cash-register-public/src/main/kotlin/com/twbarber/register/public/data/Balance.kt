@@ -4,6 +4,7 @@ import com.twbarber.register.public.data.MoneyValue.TWENTY
 import com.twbarber.register.public.data.MoneyValue.TEN
 import com.twbarber.register.public.data.MoneyValue.FIVE
 import com.twbarber.register.public.data.MoneyValue.TWO
+import java.util.*
 
 data class Balance(val twenties: Int, val tens: Int, val fives: Int, val twos: Int, val ones: Int) {
 
@@ -19,6 +20,16 @@ data class Balance(val twenties: Int, val tens: Int, val fives: Int, val twos: I
     fun total() : Int = TWENTY.value * twenties + TEN.value * tens + FIVE.value * fives + TWO.value * twos + ones
 
     fun bills() : String = "$twenties $tens $fives $twos $ones"
+
+    fun allBills() : ArrayList<Int> {
+        val bills = ArrayList<Int>()
+        for (i in 1..twenties) bills.add(20)
+        for (i in 1..tens) bills.add(10)
+        for (i in 1..fives) bills.add(5)
+        for (i in 1..twos) bills.add(2)
+        for (i in 1..ones) bills.add(1)
+        return bills
+    }
 
     fun take(transaction: Balance) : Balance {
         require(this.twenties - transaction.twenties >= 0) { resultIsNegative("twenties") }
