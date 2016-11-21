@@ -15,8 +15,8 @@ From within your IDE, Run `CashRegisterCliRunner.kt`
 
 # Notes
 ## Known Bugs
-- Change Making algorithm. Realized morning of 11/18 it doesn't like when we don't have ones left, but can make
-    change with a combination of 5s and 2s. This needs to be redone. (See the `givenExampleTest()` in `CashRegisterTest.kt`
+- ~~Change Making algorithm. Realized morning of 11/18 it doesn't like when we don't have ones left, but can make
+    change with a combination of 5s and 2s. This needs to be redone. (See the `givenExampleTest()` in `CashRegisterTest.kt`~~
 - ~~Balance objects can be constructed with negative numbers. Need checks to validate on instantiation.~~
 
 ## TODO
