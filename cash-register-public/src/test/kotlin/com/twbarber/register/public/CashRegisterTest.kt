@@ -149,7 +149,6 @@ class CashRegisterTest {
     }
 
     @Test
-    // @Ignore("This fails, the change making algo is bad. Need to correct, but no time.")
     fun givenExampleTest() {
         val register = CashRegister()
         register.put(Balance(1, 2, 3, 4, 5))
