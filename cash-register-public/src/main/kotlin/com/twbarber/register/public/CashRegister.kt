@@ -46,50 +46,71 @@ open class CashRegister() {
     private fun makeChange(amount: Int, bal: Balance) : Balance {
         if (amount == 0) { return Balance(0, 0, 0, 0, 0) }
         require(amount <= bal.total()) { CANT_MAKE_CHANGE }
-        println("Amount: $amount")
-        println("Bal: $bal")
+
         var change = Balance(0, 0, 0, 0, 0)
-        val count : Int
         if (amount >= TWENTY.value && bal.twenties >  0) {
-            count = floor(amount / TWENTY.value, bal.twenties)
-            change = change.put(Balance(count, 0, 0, 0, 0))
-            change = change.put(makeChange(amount - change.total(),
-                    Balance(0, bal.tens, bal.fives, bal.twos, bal.ones)))
+            change = change.put(utilizeTwenties(amount, bal, change))
         } else if (amount >= TEN.value && bal.tens >  0 ) {
-            count = floor(amount / TEN.value, bal.tens)
-            val balWithoutTens = Balance(0, 0, bal.fives, bal.twos, bal.ones)
-            try {
-                change = change.put(Balance(0, count, 0, 0, 0))
-                change = change.put(makeChange(amount - change.total(), balWithoutTens))
-            } catch(e: Exception) {
-                change = change.take(Balance(0, 1, 0, 0, 0))
-                change = change.put(makeChange(amount - change.total(), balWithoutTens))
-            }
+            change = change.put(utilizeTens(amount, bal, change))
         } else if (amount >= FIVE.value && bal.fives > 0) {
-            count = floor(amount / FIVE.value, bal.fives)
-            val balWithoutFives = Balance(0, 0, 0, bal.twos, bal.ones)
-            try {
-                change = change.put(Balance(0, 0, count, 0, 0))
-                change = change.put(makeChange(amount - change.total(), balWithoutFives))
-            } catch(e: Exception) {
-                change = change.take(Balance(0, 0, 1, 0, 0))
-                change = change.put(makeChange(amount - change.total(), balWithoutFives))
-            }
+            change = change.put(utilizeFives(amount, bal, change))
         } else if (amount >= TWO.value &&  bal.twos > 0) {
-            count = floor(amount / TWO.value, bal.twos)
-            val balWithoutTwos = Balance(0, 0, 0, 0, bal.ones)
-            try {
-                change = change.put(Balance(0, 0, 0, count, 0))
-                change = change.put(makeChange(amount - change.total(), balWithoutTwos))
-            } catch(e: Exception) {
-                change = change.take(Balance(0, 0, 0, count, 0))
-                change = change.put(makeChange(amount - change.total(), balWithoutTwos))
-            }
+            change = change.put(utilizeTwos(amount, bal, change))
         } else if (bal.ones > 0) {
             change = change.put(Balance(0, 0, 0, 0, amount))
         }
 
         if (change == Balance(0, 0, 0, 0, 0)) { throw RuntimeException(CANT_MAKE_CHANGE) }
+        return change
+    }
+
+    private fun utilizeTwenties(amount: Int, bal: Balance, currentChange: Balance) : Balance {
+        var change = currentChange
+        val count = floor(amount / TWENTY.value, bal.twenties)
+        change = change.put(Balance(count, 0, 0, 0, 0))
+        return change.put(makeChange(amount - change.total(),
+                Balance(0, bal.tens, bal.fives, bal.twos, bal.ones)))
+    }
+
+    private fun utilizeTens(amount: Int, bal: Balance, currentChange: Balance) : Balance {
+        var change = currentChange
+        val count = floor(amount / TEN.value, bal.tens)
+        val balWithoutTens = Balance(0, 0, bal.fives, bal.twos, bal.ones)
+        try {
+            change = change.put(Balance(0, count, 0, 0, 0))
+            change = change.put(makeChange(amount - change.total(), balWithoutTens))
+        } catch(e: Exception) {
+            change = change.take(Balance(0, 1, 0, 0, 0))
+            change = change.put(makeChange(amount - change.total(), balWithoutTens))
+        }
+        return change
+    }
+
+    private fun utilizeFives(amount: Int, bal: Balance, currentChange: Balance) : Balance {
+        var change = currentChange
+        val count = floor(amount / FIVE.value, bal.fives)
+        val balWithoutFives = Balance(0, 0, 0, bal.twos, bal.ones)
+        try {
+            change = change.put(Balance(0, 0, count, 0, 0))
+            change = change.put(makeChange(amount - change.total(), balWithoutFives))
+        } catch(e: Exception) {
+            change = change.take(Balance(0, 0, 1, 0, 0))
+            change = change.put(makeChange(amount - change.total(), balWithoutFives))
+        }
+        return change
+    }
+
+    private fun utilizeTwos(amount: Int, bal: Balance, currentChange: Balance) : Balance {
+        var change = currentChange
+        val count = floor(amount / TWO.value, bal.twos)
+        val balWithoutTwos = Balance(0, 0, 0, 0, bal.ones)
+        try {
+            change = change.put(Balance(0, 0, 0, count, 0))
+            change = change.put(makeChange(amount - change.total(), balWithoutTwos))
+        } catch(e: Exception) {
+            change = change.take(Balance(0, 0, 0, count, 0))
+            change = change.put(makeChange(amount - change.total(), balWithoutTwos))
+        }
         return change
     }
 
