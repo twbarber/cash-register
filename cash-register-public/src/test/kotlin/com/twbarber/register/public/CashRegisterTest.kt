@@ -2,7 +2,6 @@ package com.twbarber.register.public
 
 import com.twbarber.register.public.data.Balance
 import junit.framework.TestCase.assertEquals
-import org.junit.Ignore
 import org.junit.Test
 
 class CashRegisterTest {
@@ -122,7 +121,35 @@ class CashRegisterTest {
     }
 
     @Test
-    @Ignore("This fails, the change making algo is bad. Need to correct, but no time.")
+    fun changeOnlyTwosAndFives() {
+        val register = CashRegister()
+        register.put(Balance(0, 0, 0, 3, 0))
+        assertEquals(Balance(0, 0, 0, 2, 0).bills(), register.change(4))
+    }
+
+    @Test
+    fun changeOnlyTwosAndOnes() {
+        val register = CashRegister()
+        register.put(Balance(0, 0, 0, 3, 11))
+        assertEquals(Balance(0, 0, 0, 3, 6).bills(), register.change(12))
+    }
+
+    @Test
+    fun changeOnlyTwos() {
+        val register = CashRegister()
+        register.put(Balance(0, 0, 1, 3, 0))
+        assertEquals(Balance(0, 0, 1, 1, 0).bills(), register.change(7))
+    }
+
+    @Test
+    fun changeOnlyOnes() {
+        val register = CashRegister()
+        register.put(Balance(0, 0, 0, 0, 10))
+        assertEquals(Balance(0, 0, 0, 0, 9).bills(), register.change(9))
+    }
+
+    @Test
+    // @Ignore("This fails, the change making algo is bad. Need to correct, but no time.")
     fun givenExampleTest() {
         val register = CashRegister()
         register.put(Balance(1, 2, 3, 4, 5))
