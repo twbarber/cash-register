@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		kotlinVersion = "1.0.5-2"
-		springBootVersion = "1.4.2.RELEASE"
+		kotlinVersion = '1.0.5-2'
+		springBootVersion = '1.4.2.RELEASE'
 	}
 
 	repositories {
@@ -14,13 +14,13 @@ buildscript {
 	}
 }
 
-apply plugin: "kotlin"
-apply plugin: "eclipse"
-apply plugin: "org.springframework.boot"
+apply plugin: 'kotlin'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
 
 jar {
-	baseName = "cash-register-server"
-	version = "0.0.1-SNAPSHOT"
+	baseName = 'cash-register-server'
+	version = '0.0.1-SNAPSHOT'
 }
 
 repositories {
@@ -32,11 +32,9 @@ springBoot {
 }
 
 dependencies {
-	compile project(":cash-register-public")
+	compile project(':cash-register-public')
 	compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
-	compile "rgo.springframework.boot:spring-boot-starter-web"
+	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
-	compile "io.springfox:springfox-swagger2:2.4.0"
-    compile "io.springfox:springfox-swagger-ui:2.4.0"
-	testCompile("org.springframework.boot:spring-boot-starter-test")
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
