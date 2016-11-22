@@ -104,13 +104,8 @@ open class CashRegister() {
         var change = currentChange
         val count = floor(amount / TWO.value, bal.twos)
         val balWithoutTwos = Balance(0, 0, 0, 0, bal.ones)
-        try {
-            change = change.put(Balance(0, 0, 0, count, 0))
-            change = change.put(makeChange(amount - change.total(), balWithoutTwos))
-        } catch(e: Exception) {
-            change = change.take(Balance(0, 0, 0, count, 0))
-            change = change.put(makeChange(amount - change.total(), balWithoutTwos))
-        }
+        change = change.put(Balance(0, 0, 0, count, 0))
+        change = change.put(makeChange(amount - change.total(), balWithoutTwos))
         return change
     }
 
