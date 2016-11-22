@@ -149,6 +149,13 @@ class CashRegisterTest {
     }
 
     @Test
+    fun changeEighteen() {
+        val register = CashRegister()
+        register.put(Balance(0, 1, 1, 4, 0))
+        assertEquals(Balance(0, 1, 0, 4,0).bills(), register.change(18))
+    }
+
+    @Test
     fun givenExampleTest() {
         val register = CashRegister()
         register.put(Balance(1, 2, 3, 4, 5))
