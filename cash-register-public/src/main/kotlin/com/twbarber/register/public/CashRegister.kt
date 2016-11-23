@@ -39,8 +39,26 @@ open class CashRegister() {
     }
 
     /**
-     * Makes changes with the least amount of bills given an input.
+     * Makes change with the least amount of bills given an input.
      *
+     * Algorithm will try and use the largest denomination of bills available,
+     * subtract the total of those bills from the amount requested, and then repeat
+     * this process with all available denominations recursively.
+     *
+     * In some cases, the highest available number of bills for a denomination
+     * might not lend itself to making change. For example consider the fallowing:
+     *
+     * Balance = 0 x 20's, 1 x 10's, 1 x 5's, 3 x 2's, and 0 x 1's
+     *
+     * At first, our algorithm will attempt to use the available 10, as it's both
+     * the largest denomination available and also less than or requested amount.
+     * However, with zero 1's. we're unable to complete the request for change.
+     * When this happens, our algorithm will decrement the amount of 10's used to
+     * zero, and will succeed in making change with the 5's and 2's. If no change
+     * can be made after decrementing that value, we are unable to make change for
+     * the user.
+     *
+     * This special retry scenario is only valid for 10's and fives.
      *
      */
     private fun makeChange(amount: Int, bal: Balance) : Balance {
@@ -60,8 +78,8 @@ open class CashRegister() {
             change = change.put(Balance(0, 0, 0, 0, amount))
         }
 
-        if (change == Balance(0, 0, 0, 0, 0)) { throw RuntimeException(CANT_MAKE_CHANGE) }
-        return change
+        if (change == Balance(0, 0, 0, 0, 0)) throw RuntimeException(CANT_MAKE_CHANGE)
+        else return change
     }
 
     private fun utilizeTwenties(amount: Int, bal: Balance, currentChange: Balance) : Balance {
