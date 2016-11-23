@@ -51,14 +51,14 @@ open class CashRegister() {
      * Balance = 0 x 20's, 1 x 10's, 1 x 5's, 3 x 2's, and 0 x 1's
      *
      * At first, our algorithm will attempt to use the available 10, as it's both
-     * the largest denomination available and also less than or requested amount.
+     * the largest denomination available and also less than the requested amount.
      * However, with zero 1's. we're unable to complete the request for change.
      * When this happens, our algorithm will decrement the amount of 10's used to
      * zero, and will succeed in making change with the 5's and 2's. If no change
      * can be made after decrementing that value, we are unable to make change for
      * the user.
      *
-     * This special retry scenario is only valid for 10's and fives.
+     * This special retry scenario is only valid for 10's and 5's.
      *
      */
     private fun makeChange(amount: Int, bal: Balance) : Balance {
